@@ -2,6 +2,8 @@ package com.lesson.lab;
 
 import com.lesson.lab.controller.SeatBooking;
 
+import java.net.SocketOption;
+import java.net.SocketTimeoutException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,6 +30,18 @@ public class Main {
 
             switch (choice) {
                 case 1:
+                    System.out.print("Enter seat number for booking ");
+                    String seatnumber = "";
+                    try {
+                        seatnumber = keyboard.nextLine();
+                        keyboard.nextLine(); // Consume newline character
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a valid number.");
+                        keyboard.nextLine(); // Clear invalid input
+                        continue; // Skip the rest of the loop iteration
+                    }
+                    bookingManager.addNewBooking(seatnumber);
+
                     // TODO 16: add New Seats
                     // use a print statement to instruct the user to enter a seat number for booking.
                     // take the seat number input from the user.
@@ -35,12 +49,45 @@ public class Main {
 
                     break;
                 case 2:
+                    System.out.print("Enter seat number for cancellation ");
+                    String removeseat = "";
+                    try {
+                        removeseat = keyboard.nextLine();
+                        keyboard.nextLine(); // Consume newline character
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a valid number.");
+                        keyboard.nextLine(); // Clear invalid input
+                        continue; // Skip the rest of the loop iteration
+                    }
+                    bookingManager.cancelBooking(removeseat);
+
                     // TODO 17: remove Booking
                     // print a message instructing the user to enter the seat number they wish to cancel.
                     // take the seat number input from the user.
                     // call the cancelBooking method with the provided seat number to cancel the booking.
                     break;
                 case 3:
+                    System.out.print("Enter old seat number for update ");
+                    String oldseat = "";
+                    try {
+                        oldseat = keyboard.nextLine();
+                        keyboard.nextLine(); // Consume newline character
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a valid number.");
+                        keyboard.nextLine(); // Clear invalid input
+                        continue; // Skip the rest of the loop iteration
+                    }
+                    System.out.print("Enter new seat number for update ");
+                    String newseat = "";
+                    try {
+                        newseat = keyboard.nextLine();
+                        keyboard.nextLine(); // Consume newline character
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a valid number.");
+                        keyboard.nextLine(); // Clear invalid input
+                        continue; // Skip the rest of the loop iteration
+                    }
+                    bookingManager.updateBooking(oldseat, newseat);
                     // TODO 18: update booking
                     // prompt users to enter the old seat number they want to update.
                     // take the old seat number input from the user.
@@ -51,6 +98,7 @@ public class Main {
 
                     break;
                 case 4:
+
                     // display the all bookings
                     // check if the bookedSeatsList is empty, inform the user that no bookings have been made yet
                     // iterate through the list of booked seats, Check if the seat is booked and not cancelled
