@@ -85,7 +85,6 @@ public class SeatBooking {
                 System.out.println("Booking is updated with new seat Number ");
             }
         });*/
-
     }
     // Method to display all bookings
     public void displayBookings() {
