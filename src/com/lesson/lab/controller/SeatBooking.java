@@ -34,7 +34,6 @@ public class SeatBooking {
         bookedSeatsList.add(seat1);
         System.out.println("Booking confirmed with seat number :"+"\n"+seat1.toString());
     }
-
     // Method to cancel a booking
     public void cancelBooking(String seatNumber) {
         // TODO 6: iterate through the list of booked seats
